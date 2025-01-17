@@ -1,30 +1,27 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import api from '../services/api';
 
 function ArticleList() {
     const [articles, setArticles] = useState([]);
 
     useEffect(() => {
-        console.log('Fetching articles...');
         api.get('/articles')
-            .then((response) => {
-                console.log('Fetched articles:', response.data);
-                setArticles(response.data);
-            })
+            .then((response) => setArticles(response.data))
             .catch((error) => console.error('Error fetching articles:', error));
     }, []);
-    
 
     return (
-        
         <div>
-            <hr />
-
-            <h1>Article List</h1>
+            <hr/>
+            <h2>Article List</h2>
             <ul>
                 {articles.map((article) => (
                     <li key={article.id}>
-                        <h2>{article.title}</h2>
+                        {/* 제목 클릭 시 상세 페이지로 이동 */}
+                        <Link to={`/articles/${article.id}`}>
+                            <h2>{article.title}</h2>
+                        </Link>
                         <p>{article.content}</p>
                     </li>
                 ))}
