@@ -10,6 +10,7 @@ function App() {
         <Router>
             <div>
                 <h1>Blog App</h1>
+                <hr />
                 <Routes>
                     {/* 메인 페이지: 글 목록 및 글 작성 */}
                     <Route

@@ -20,7 +20,7 @@ function EditArticlePage() {
         api.put(`/articles/${id}`, article)
             .then(() => {
                 alert('Article updated successfully!');
-                navigate('/'); // 수정 후 목록 페이지로 이동
+                navigate(`/articles/${id}`); // 수정 후 목록 페이지로 이동
             })
             .catch(error => console.error("Error updating article:", error));
     };

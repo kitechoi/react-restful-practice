@@ -14,6 +14,18 @@ function ArticleDetailPage() {
             .catch((error) => console.error('Error fetching article:', error));
     }, [id]);
 
+    // 글 삭제 함수
+    const handleDelete = () => {
+        if (window.confirm('Are you sure you want to delete this article?')) {
+            api.delete(`/articles/${id}`)
+                .then(() => {
+                    alert('Article deleted successfully!');
+                    navigate('/'); // 삭제 후 글 목록 페이지로 이동
+                })
+                .catch((error) => console.error('Error deleting article:', error));
+        }
+    };
+
     return (
         <div>
             <h2>{article.title}</h2>
@@ -21,6 +33,7 @@ function ArticleDetailPage() {
             <button onClick={() => navigate(`/articles/${id}/edit`)}>
                 Edit
             </button>
+            <button onClick={handleDelete}>Delete</button>
         </div>
     );
 }
